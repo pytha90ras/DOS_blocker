@@ -1,7 +1,6 @@
 def firewall():
     from os import geteuid
     from time import time
-    from sys import exit
     from scapy.all import sniff, IP
     from subprocess import run
 
@@ -42,7 +41,8 @@ def firewall():
 
  
     if geteuid() !=0:
-        exit(1) 
+        print('Root privilege required')
+        return
     packet_count={}
     Blocked={}
     whitelist={'172.16.78.1','172.16.78.3'}
